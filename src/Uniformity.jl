@@ -4,7 +4,7 @@ import TOML
 
 include("./customization.jl")
 
-export available, unavailable, gander, option, choose, view, @unimplemented
+export views, gander, option, choose, view
 export Source, Option, View
 
 abstract type Source end
@@ -62,47 +62,12 @@ end
 end
 
 """
-    available(source::Source)::AbstractArray{View}   
+    views(source::Source)::AbstractArray{View}   
 
 List available views that the source provides
 """
-function available end
+function views end
 
-"""
-    @views(source_type, declaration)  
-"""
-macro views end
-
-
-"""
-    unavailable(source::Source)::AbstractArray{View}   
-
-List unavailable views
-"""
-function unavailable end
-
-"""
-    @unimplemented(type, view_names...)    
-
-Helper for adding unavailable views for a particular source.
-"""
-macro unimplemented(type, view_names...)
-    views = [
-        quote
-            View{$type, Nothing}(
-                title=$name,
-                options = Dict(),
-                source = Ref{$type}(source)
-            ) 
-        end
-        for name in view_names
-    ]
-    quote
-        function $(esc(:unavailable))(source::$type)
-            [$(views...)]
-        end
-    end
-end
 
 gander(view::View) = gander(view.source[], view) 
 
