@@ -1,7 +1,7 @@
 name = "Uniformity"
 uuid = "93e9bc16-45db-4b33-8826-cfe471273028"
 authors = ["Five Grant <5@fivegrant.com>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"

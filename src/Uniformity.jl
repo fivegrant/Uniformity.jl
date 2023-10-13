@@ -4,7 +4,8 @@ import TOML
 
 include("./customization.jl")
 
-export available, unavailable, gander, Option, option, choose, view, @unimplemented, Uniformity
+export available, unavailable, gander, option, choose, view, @unimplemented
+export Source, Option, View
 
 abstract type Source end
 
